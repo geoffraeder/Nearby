@@ -7,5 +7,5 @@ The presentation layer integrates with a service and network layer via depenency
 
 * Requires Xcode 13/iOS 15
 * Caveats
- - Doesn't support Google API paging
- - Bookmark button doesn't seem to work on the simulator
+	* Doesn't support Google API paging
+	* Bookmark button doesn't seem to work on the simulator
