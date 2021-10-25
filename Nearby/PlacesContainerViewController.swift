@@ -58,7 +58,6 @@ class PlacesContainerViewController: PlacesViewController, UISearchControllerDel
         showMapViewController(nil)
 
         toolbarItems = [nearbyBarButtonItem!, savedBarButtonItem!]
-        navigationController?.isToolbarHidden = false
     }
 
     private func setupBarButtonItems() {
@@ -77,14 +76,14 @@ class PlacesContainerViewController: PlacesViewController, UISearchControllerDel
 
         let nearbyButton = UIButton()
         let nearbyConfiguration = UIImage.SymbolConfiguration(pointSize: 30, weight: .light, scale: .large)
-        let locationImage = UIImage(systemName: "location.circle", withConfiguration: nearbyConfiguration)
+        let locationImage = UIImage(systemName: "location.circle.fill", withConfiguration: nearbyConfiguration)
         nearbyButton.setImage(locationImage, for: .normal)
         nearbyButton.addTarget(self, action: #selector(showNearbyPlaces(_:)), for: .touchUpInside)
         nearbyBarButtonItem = UIBarButtonItem(customView: nearbyButton)
 
         let savedButton = UIButton()
         let savedConfiguration = UIImage.SymbolConfiguration(pointSize: 30, weight: .light, scale: .large)
-        let savedImage = UIImage(systemName: "bookmark.circle", withConfiguration: savedConfiguration)
+        let savedImage = UIImage(systemName: "bookmark.circle.fill", withConfiguration: savedConfiguration)
         savedButton.setImage(savedImage, for: .normal)
         savedButton.addTarget(self, action: #selector(showSavedPlaces(_:)), for: .touchUpInside)
         savedBarButtonItem = UIBarButtonItem(customView: savedButton)
@@ -106,6 +105,7 @@ class PlacesContainerViewController: PlacesViewController, UISearchControllerDel
     }
 
     private func showPlacesController(_ controller: PlacesViewController, state: PlacesViewControllerState) {
+        navigationController?.isToolbarHidden = true
         removeCurrentController()
         controller.willMove(toParent: self)
         addChild(controller)
@@ -121,6 +121,8 @@ class PlacesContainerViewController: PlacesViewController, UISearchControllerDel
             self.viewControllerState = state
             self.updateTransitionButton()
         }
+
+        self.navigationController?.isToolbarHidden = false // Hack to get desired toolbar display
     }
 
     override func reload() {
@@ -147,16 +149,14 @@ class PlacesContainerViewController: PlacesViewController, UISearchControllerDel
     }
 
     @objc func showMapViewController(_ sender: UIButton?) {
-        navigationController?.isToolbarHidden = true
         showPlacesController(placesMapViewController, state: .map)
-        navigationController?.isToolbarHidden = false // Hack to get desired toolbar display
     }
 
     @objc func showNearbyPlaces(_ sender: UIButton?) {
         guard let currentLocation = locationSnapshot else {
             return
         }
-        
+
         updatePlaces(for: currentLocation)
     }
 
@@ -201,7 +201,7 @@ class PlacesContainerViewController: PlacesViewController, UISearchControllerDel
         let placeDetailViewController = PlaceDetailViewController()
         placeDetailViewController.place = place
         placeDetailViewController.currentLocation = locationSnapshot
-        
+
         if let sheet = placeDetailViewController.sheetPresentationController {
             sheet.detents = [ .medium(), .large() ]
             sheet.prefersGrabberVisible = true
@@ -278,6 +278,7 @@ extension PlacesContainerViewController {
 
 extension PlacesContainerViewController {
     func showAllPlacesForPlacesListViewController(_ controller: PlacesListViewController) {
+        dismiss(animated: true, completion: nil)
         places = controller.places
         placesMapViewController.showAllAnnotations(animated: true)
     }
