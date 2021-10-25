@@ -1,0 +1,52 @@
+{
+    "results": [
+        {
+            "business_status" : "OPERATIONAL",
+            "geometry" : {
+                "location" : {
+                    "lat" : 43.0817934,
+                    "lng" : -73.783615
+                },
+                "viewport" : {
+                    "northeast" : {
+                        "lat" : 43.08314322989271,
+                        "lng" : -73.78226517010728
+                    },
+                    "southwest" : {
+                        "lat" : 43.08044357010727,
+                        "lng" : -73.78496482989271
+                    }
+                }
+            },
+            "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+            "icon_background_color" : "#FF9E67",
+            "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+            "name" : "Sperry's",
+            "opening_hours" : {
+                "open_now" : true
+            },
+            "photos" : [
+                {
+                    "height" : 2576,
+                    "html_attributions" : [
+                        "\u003ca href=\"https://maps.google.com/maps/contrib/105786642595750065806\"\u003eTom Barnes\u003c/a\u003e"
+                    ],
+                    "photo_reference" : "Aap_uEAnr02WJbJ-dq-HAt7lVztUHiGYsv9u_HpBrGL2d3u9zkxJ_j2znSBFWuxuhMj-ScSjQGtstHDzx-NQllhzU_3tLvfCUnLLpxr0oEWTzf8JV_fz-Cya6f8newxTsCLls0gjEXwMzc3v_MbBTzJs85mW99fwiVZLgkWBjH6SFshXdva6",
+                    "width" : 1932
+                }
+            ],
+            "place_id" : "ChIJhRvvU9c53okRhKVNPEem9S8",
+            "plus_code" : {
+                "compound_code" : "36J8+PH Saratoga Springs, New York",
+                "global_code" : "87M836J8+PH"
+            },
+            "price_level" : 3,
+            "rating" : 4.4,
+            "reference" : "ChIJhRvvU9c53okRhKVNPEem9S8",
+            "scope" : "GOOGLE",
+            "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+            "user_ratings_total" : 230,
+            "vicinity" : "30 1/2 Caroline St, Saratoga Springs"
+        }
+    ]
+}

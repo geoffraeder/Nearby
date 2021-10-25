@@ -2,32 +2,33 @@
 //  NearbyTests.swift
 //  NearbyTests
 //
-//  Created by Geoff Raeder on 10/20/21.
+//  Created by Geoff Raeder on 10/16/21.
 //
 
 import XCTest
-@testable import Nearby
 
 class NearbyTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    func testDecodePlaces() throws {
+        let bundle = Bundle(for: Self.self)
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+        guard let url = bundle.url(forResource: "place-data", withExtension: "json") else {
+            fatalError()
+        }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+        let decoded = try JSONDecoder().decode(PlaceResult.self, from: Data(contentsOf: url))
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        for place in decoded.places {
+            XCTAssertNotNil(place.id)
+            XCTAssertNotNil(place.name)
+            XCTAssertNotNil(place.rating)
+            XCTAssertNotNil(place.vicinity)
+            XCTAssertNotNil(place.geometry)
+            XCTAssertNotNil(place.geometry?.location)
+            XCTAssertNotNil(place.geometry?.location.latitude)
+            XCTAssertNotNil(place.geometry?.location.longitude)
+            XCTAssertNotNil(place.location?.coordinate.latitude)
+            XCTAssertNotNil(place.location?.coordinate.longitude)
         }
     }
-
 }
