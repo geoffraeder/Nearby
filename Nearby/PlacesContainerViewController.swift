@@ -243,6 +243,12 @@ extension PlacesContainerViewController {
 extension PlacesContainerViewController {
     func willPresentSearchController(_ searchController: UISearchController) {
         dismiss(animated: true, completion: nil)
+
+        guard let placesListController = searchController.searchResultsController as? PlacesListViewController else {
+            return
+        }
+
+        placesListController.locationSnapshot = locationSnapshot
     }
 }
 

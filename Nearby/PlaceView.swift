@@ -30,7 +30,7 @@ class PlaceView: UIView {
     weak var delegate: PlaceViewDelegate?
 
     private func setup() {
-        self.backgroundColor = .white
+        self.backgroundColor = .systemBackground
 
         let iconConfiguration = UIImage.SymbolConfiguration(pointSize: 24, weight: .bold, scale: .large)
         iconView.image = UIImage(systemName: "fork.knife.circle.fill", withConfiguration: iconConfiguration)

@@ -80,6 +80,15 @@ class PlaceDataService: DataService, PlaceDataServiceType {
         let route = PlaceServiceRouter.nearbyPlaces(location: location, radius: radius, type: type, keyword: keyword)
 
         let placeResult: PlaceResult = try await self.networkService.execute(for: route)
-        return placeResult.places
+
+        let places = placeResult.places.sorted {
+            guard let locationA = $0.location, let locationB = $1.location else {
+                return false
+            }
+
+            return locationA.distance(from: location) < locationB.distance(from: location)
+        }
+
+        return places
     }
 }

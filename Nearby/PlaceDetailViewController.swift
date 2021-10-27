@@ -17,7 +17,7 @@ class PlaceDetailViewController: UIViewController, PlaceViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.addSubview(placeView)
         placeView.pinTo(safeAreaOf: view)
 
